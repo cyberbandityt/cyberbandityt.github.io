@@ -7,6 +7,12 @@ const aboutContent = document.querySelector('#about-content')
 const contactContent = document.querySelector('#contact-content')
 const skillsContent = document.querySelector('#skills-content')
 const terminal = document.querySelector('#terminal')
+const resume = document.querySelector('#resume')
+const blog = document.querySelector('#blog')
+const resumeContent = document.querySelector('#resume-content')
+const blogContent = document.querySelector('#blog-content')
+const startmenuresume = document.querySelector('#start-menu-resume')
+const startmenublog = document.querySelector('#start-menu-blog')
 
 const startmenunotepad = document.querySelector('#start-menu-notepad')
 const startMenuSection = document.querySelector('#start-menu-icon');
@@ -83,6 +89,66 @@ window.addEventListener("message", function (ex) {
 		const o = ex.data;
 		"closeTerminal" == o && termBox.close()
 	})
+})
+
+resume.addEventListener('click', () => {
+  const resumeBox = new WinBox({
+    title: 'Resume - Aayush Poudel',
+    width: '600px',
+    height: '500px',
+    top:50,
+    right:50,
+    left:50,
+    x: "center",
+    y: "center",
+    mount: resumeContent,
+    background: '#0078d4',
+  })
+})
+
+startmenuresume.addEventListener('click', () => {
+  const resumeBox = new WinBox({
+    title: 'Resume - Aayush Poudel',
+    width: '600px',
+    height: '500px',
+    top:50,
+    right:50,
+    left:50,
+    x: "center",
+    y: "center",
+    mount: resumeContent,
+    background: '#0078d4',
+  })
+})
+
+blog.addEventListener('click', () => {
+  const blogBox = new WinBox({
+    title: 'Technical Blog & Articles',
+    width: '700px',
+    height: '600px',
+    top:50,
+    right:50,
+    left:50,
+    x: "center",
+    y: "center",
+    mount: blogContent,
+    background: '#2d2d2d',
+  })
+})
+
+startmenublog.addEventListener('click', () => {
+  const blogBox = new WinBox({
+    title: 'Technical Blog & Articles',
+    width: '700px',
+    height: '600px',
+    top:50,
+    right:50,
+    left:50,
+    x: "center",
+    y: "center",
+    mount: blogContent,
+    background: '#2d2d2d',
+  })
 })
 
 startmenunotepad.addEventListener('click',()=>{
@@ -327,3 +393,90 @@ alertLocation.addEventListener('click', () => {
       maximumAge: 0
   });
 })
+
+// Download Resume Function
+function downloadResume() {
+  // Create resume text content
+  const resumeText = `
+AAYUSH POUDEL
+Software Engineer & Tech Entrepreneur
+Email: whois@poudel-aayush.com.np | Phone: +977 9866006169
+LinkedIn: linkedin.com/in/cyberbandit | GitHub: github.com/cyberbandityt
+
+================================
+PROFESSIONAL SUMMARY
+================================
+Innovative Software Engineer and Tech Entrepreneur with expertise in Rapid Application Development,
+Security Systems, and Business Innovation. Proven track record of leading successful projects and teams.
+
+================================
+EDUCATION
+================================
+Tetr College of Business (2024-2028)
+Technology and Business Management
+- $200,000 scholarship by NAS Daily (awarded to 2 students worldwide)
+
+Motherland Secondary School (2020-2022)
+GPA: 3.7/4
+
+================================
+PROFESSIONAL EXPERIENCE
+================================
+Founder - Code Fest (Jul 2023 - Present)
+- Leading team of 10 developers
+- Improved efficiency by 100% using Agile/SCRUM methodologies
+- Managing multiple software development projects
+
+Software Engineer - Brand Builder Nepal (Mar 2023 - Present)
+- Led Digital Business Profile project: 100 users in first month
+- Developed POS and e-commerce solution: 200 users in 3 months
+- Full-stack development and system architecture
+
+================================
+KEY ACHIEVEMENTS
+================================
+• Software Suave Award - Lakshmipat Singhania Academy, India (100+ participants, 10 countries)
+• KIMFF Short Film Competition 2021 Winner - Featured at COP27 (€700 + $1000 grant)
+• Security Researcher - Acknowledged by HamroPatro, SetoPati, Foodmood
+• "Best Strategist" - MyMUN by YTS Pokhara (56 participants)
+• 1st Place - State Level Web Hackathon (300+ teams)
+
+================================
+TECHNICAL SKILLS
+================================
+Languages: JavaScript, Python, Java, C
+Frameworks: NodeJS, React, Angular
+Specializations: Security Systems, Blockchain, AI/ML, Web3
+Tools: Git, Docker, AWS, Agile/SCRUM
+
+================================
+CONTACT INFORMATION
+================================
+Email: whois@poudel-aayush.com.np
+Alternative: poudelaayush90@gmail.com
+Phone: +977 9866006169
+Location: Pokhara, Kaski, Nepal
+LinkedIn: linkedin.com/in/cyberbandit
+GitHub: github.com/cyberbandityt
+`;
+
+  // Create a Blob from the text
+  const blob = new Blob([resumeText], { type: 'text/plain' });
+
+  // Create download link
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Aayush_Poudel_Resume.txt';
+
+  // Trigger download
+  document.body.appendChild(a);
+  a.click();
+
+  // Cleanup
+  window.URL.revokeObjectURL(url);
+  document.body.removeChild(a);
+
+  // Show confirmation
+  alert('Resume downloaded successfully!\n\nNote: This is a text version. For a PDF version with proper formatting, please contact me directly.');
+}
